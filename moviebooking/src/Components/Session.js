@@ -27,8 +27,9 @@ class Session extends Component {
 	render(){
 		return (
 			<div className="row">
+        <h3>Please select a session for {this.props.currentMovie.title}</h3>
         <FormControl as="select" value={this.props.session} onChange={this.props.handleChange}>
-          {this.state.session_times.map((item) => <FormControl as="option" value={item.SESSIDX}>{item.SESS_TIME}</FormControl>)}
+          {this.state.session_times.map((item) => <option key={item.SESSIDX} value={item.SESSIDX}>{item.SESS_TIME}</option>)}
         </FormControl>
         <br/><br/><p>You have selected session {this.props.session}</p>
 			</div>

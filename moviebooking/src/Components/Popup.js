@@ -27,6 +27,7 @@ class Popup extends Component {
 					return(
 						<Session 
 							session={this.state.session}
+							currentMovie={currentMovie}
 							handleChange={this.updateSession.bind(this)} />
 					);
 			case 2:
@@ -80,8 +81,7 @@ class Popup extends Component {
 				<div className="popup_upper">
 					<img className="close" src={CloseImage} alt="close" height={20} width={20} onClick={this.props.closePopup} />
 					<div className="progressBar">
-						<div className="filler" style={{ width: `${((this.state.stepNum)*100)/5}%` }}>
-						</div>
+						<div className="filler" style={{ width: `${((this.state.stepNum)*100)/5}%` }}></div>
 					</div>
 				</div>
         <div className="popup_inner">
