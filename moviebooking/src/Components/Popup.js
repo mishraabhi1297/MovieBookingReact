@@ -10,7 +10,8 @@ class Popup extends Component {
 		super(props);
 
 		this.state = {
-				stepNum: 0
+			stepNum: 0,
+			session: 1
 		};
 	}
 
@@ -24,7 +25,9 @@ class Popup extends Component {
 				);
 			case 1:
 					return(
-						<Session />
+						<Session 
+							session={this.state.session}
+							handleChange={this.updateSession.bind(this)} />
 					);
 			case 2:
 				return(
@@ -65,6 +68,10 @@ class Popup extends Component {
 		if(int > 0){
 			this.setState({ stepNum: int-1 });
 		}
+	}
+
+	updateSession(event){
+		this.setState({session: event.target.value});
 	}
 
 	render(){

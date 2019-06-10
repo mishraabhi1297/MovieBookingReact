@@ -19,7 +19,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    axios.get(`${this.state.BaseUrl}discover/movie?primary_release_date.gte=2019-04-15&primary_release_date.lte=2019-05-15&api_key=${this.state.API}`)
+    axios.get(`${this.state.BaseUrl}discover/movie?primary_release_date.gte=2019-05-15&primary_release_date.lte=2019-06-15&api_key=${this.state.API}`)
     .then(res => {
       console.log(res.data.results);
       this.setState({ data: res.data.results });
@@ -50,6 +50,7 @@ class App extends Component {
         <div className="row">
           <h1>The Movie Booking App</h1>
         </div>
+
         <div className="row">
           {/* Setting up the posters in horizontal format */}
           <div className="poster">
@@ -61,6 +62,7 @@ class App extends Component {
               )}
           </div>
         </div>
+
         <div>
           {this.state.showPopup ? this.myPopup() : null}
         </div>
