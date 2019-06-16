@@ -19,6 +19,7 @@ class App extends Component {
   }
 
   componentDidMount(){
+    //Get the movie information
     axios.get(`${this.state.BaseUrl}discover/movie?primary_release_date.gte=2019-05-15&primary_release_date.lte=2019-06-15&api_key=${this.state.API}`)
     .then(res => {
       console.log(res.data.results);

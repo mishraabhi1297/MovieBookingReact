@@ -4,6 +4,7 @@ import CloseImage from '../Images/close.png';
 
 import MovieDesc from './MovieDesc';
 import Session from './Session';
+import Quantity from './Quantity';
 
 class Popup extends Component {
 	constructor(props){
@@ -11,7 +12,20 @@ class Popup extends Component {
 
 		this.state = {
 			stepNum: 0,
-			session: 1
+
+			//Session
+			session: 1,
+
+			//Quantity
+			ticketTypes: [
+				{id: 1, title: 'Adult', price: 18, quantity: 0},
+				{id: 2, title: 'Child', price: 12, quantity: 0},
+				{id: 3, title: 'Concession', price: 10, quantity: 0},
+				{id: 4, title: 'Senior', price: 10, quantity: 0}
+			],
+			totalQuantity: 0,
+			totalPrice: 0,
+			increment: false
 		};
 	}
 
@@ -32,9 +46,12 @@ class Popup extends Component {
 					);
 			case 2:
 				return(
-					<div>
-						<h2>Quantity</h2>
-					</div>
+					<Quantity 
+						totalQuantity={this.state.totalQuantity}
+						totalPrice={this.state.totalPrice}
+						ticketTypes={this.state.ticketTypes}
+						currentMovie={currentMovie}
+						updateTicket={this.updateTicket.bind(this)} />
 				);
 			case 3:
 				return(
@@ -72,7 +89,27 @@ class Popup extends Component {
 	}
 
 	updateSession(event){
-		this.setState({session: event.target.value});
+		this.setState({ session: event.target.value });
+	}
+
+	updateTicket(id, increment){
+		let newTicketTypes = this.state.ticketTypes;
+		let newTotalQuantity = this.state.totalQuantity;
+		let newTotalPrice = this.state.totalPrice;
+
+		if(increment){
+			newTicketTypes[id-1].quantity++;
+			newTotalQuantity++;
+			newTotalPrice += newTicketTypes[id-1].price;
+		}
+
+		if(!increment && newTicketTypes[id-1].quantity > 0){
+			newTicketTypes[id-1].quantity--;
+			newTotalQuantity--;
+			newTotalPrice -= newTicketTypes[id-1].price;
+		}
+
+		this.setState({ ticketTypes: newTicketTypes, totalQuantity: newTotalQuantity, totalPrice: newTotalPrice });
 	}
 
 	render(){
