@@ -5,7 +5,8 @@ class SeatAlloc extends Component {
 		
 	render(){
 		return (
-			<div>
+			<div className="row">
+				<h3>Choose {this.props.totalQuantity} seats for {this.props.currentMovie.title}</h3>
 			</div>
 		);
 	}

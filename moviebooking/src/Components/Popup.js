@@ -5,6 +5,7 @@ import CloseImage from '../Images/close.png';
 import MovieDesc from './MovieDesc';
 import Session from './Session';
 import Quantity from './Quantity';
+import SeatAlloc from './SeatAlloc';
 
 class Popup extends Component {
 	constructor(props){
@@ -38,16 +39,15 @@ class Popup extends Component {
 						currentMovie={currentMovie} />
 				);
 			case 1:
-					return(
-						<Session 
-							session={this.state.session}
-							currentMovie={currentMovie}
-							handleChange={this.updateSession.bind(this)} />
-					);
+				return(
+					<Session 
+						session={this.state.session}
+						currentMovie={currentMovie}
+						handleChange={this.updateSession.bind(this)} />
+				);
 			case 2:
 				return(
 					<Quantity 
-						totalQuantity={this.state.totalQuantity}
 						totalPrice={this.state.totalPrice}
 						ticketTypes={this.state.ticketTypes}
 						currentMovie={currentMovie}
@@ -55,9 +55,9 @@ class Popup extends Component {
 				);
 			case 3:
 				return(
-					<div>
-						<h2>Seat Booking</h2>
-					</div>
+					<SeatAlloc
+						totalQuantity={this.state.totalQuantity}
+						currentMovie={currentMovie} />
 				);
 			case 4:
 				return(
