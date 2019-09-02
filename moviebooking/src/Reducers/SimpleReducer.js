@@ -1,5 +1,5 @@
 export class SimpleReducer {
-    numOfClicks = 0;
+    totalClicks = 0;
   }
   
   const initialState = new SimpleReducer();

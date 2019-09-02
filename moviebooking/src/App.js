@@ -2,20 +2,23 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 import Popup from './Components/Popup';
+import { connect } from 'react-redux';
+import { increment, decrement } from './Actions/SimpleAction';
 
 class App extends Component {
+
   constructor(){
     super();
 
     this.state = {
-      moviePosters: [],
-      data: [],
-      showPopup: false,
-      currentMovie: [],
-      API: '6cede8b2b29249da8b1d8c2311f18209',
-      BaseUrl: 'https://api.themoviedb.org/3/',
-      BaseImageUrl: 'https://image.tmdb.org/t/p/w500/'
-    };
+    moviePosters: [],
+    data: [],
+    showPopup: false,
+    currentMovie: [],
+    API: '6cede8b2b29249da8b1d8c2311f18209',
+    BaseUrl: 'https://api.themoviedb.org/3/',
+    BaseImageUrl: 'https://image.tmdb.org/t/p/w500/'
+    }
   }
 
   componentDidMount(){
@@ -49,7 +52,7 @@ class App extends Component {
     return (
       <div className="container">
         <div className="row">
-          <h1>The Movie Booking App</h1>
+          <h1>The Movie Booking App {this.props.number}</h1>
         </div>
 
         <div className="row">
@@ -72,4 +75,13 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  increment: () => dispatch(increment()),
+  decrement: () => dispatch(decrement())
+ })
+
+const mapStateToProps = (state) => ({
+  number: state.simple.totalClicks
+ })
+
+ export default connect(mapStateToProps, mapDispatchToProps)(App);
